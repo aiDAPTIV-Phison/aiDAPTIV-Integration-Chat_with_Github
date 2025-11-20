@@ -72,7 +72,7 @@ echo "Port: %PORT%"
 start "" "%PYTHON_EXE%" -m uvicorn open_webui.main:app --host "%HOST%" --port "%PORT%" --workers %UVICORN_WORKERS% --ws auto
 
 :: Wait a few seconds for server to be ready
-timeout /t 15
+timeout /t 25
 
 :: Run flow.py script
 echo Executing flow.py
