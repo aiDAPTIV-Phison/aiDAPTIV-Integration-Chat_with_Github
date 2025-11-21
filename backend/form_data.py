@@ -3,6 +3,8 @@ import time
 from datetime import datetime 
 from uuid import uuid4 
 
+from config import EXAMPLE_CHAT_TITLE
+
 
 def prepare_create_new_chat_payload(
     selected_model_id: str,
@@ -14,7 +16,7 @@ def prepare_create_new_chat_payload(
     form_data = {
         "chat": {
             "id": "",
-            "title": "Asking Github Repository (Example)",
+            "title": EXAMPLE_CHAT_TITLE,
             "models": [
                 selected_model_id,
             ],
