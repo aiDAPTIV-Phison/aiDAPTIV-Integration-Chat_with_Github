@@ -31,6 +31,10 @@ Connected URL: http://<HOST-GIVEN>:<PORT-GIVEN>/api/
 8. You should see a new chat being created called `Asking Github Repository (Example)`.
 9. You may continue asking question from here or create a new chat to ask about another Github repository with accelerated inference speed.
 
+## Enable Github MCP Tool Use
+1. At the center of your page, you will see a chat box. Near the left bottom corner of the chat box, you can locate an icon beside "+", click on the button (Integrations)
+2. Click on `Tools >`.
+3. Toggle on the `github-mcp-server` tool so that the Agent can use this tool to search for Github Repository details.
 
 ## How to get Github Personal Access Token (PAT)
 
