@@ -12,9 +12,14 @@ ECHO "%MCP_PATH%"
 REM Backend server
 SET "BACKEND_PATH=%PROJECT_ROOT%backend\start_windows.bat"
 
-
 REM ==== MCP port ====
 SET "MCP_PORT=8000"
+
+REM ==== Backend port ====
+SET "BACKEND_PORT=8001"
+
+SET "FLOW_FLAG=%PROJECT_ROOT%backend\flow_done.flag"
+
 
 echo ===============================================
 echo   Open WebUI Launcher
@@ -61,6 +66,7 @@ netstat -ano | find ":%MCP_PORT% " >nul
 IF ERRORLEVEL 1 goto WAIT_FOR_MCP
 
 echo MCP is running!
+echo.
 
 REM ---------------------------------------------
 REM 4) START BACKEND SERVER
@@ -68,8 +74,5 @@ REM ---------------------------------------------
 echo Starting Backend Server...
 START "Backend Server" "%BACKEND_PATH%"
 
+echo Backend is running!
 echo.
-echo ===============================================
-echo  All components are now running successfully!
-echo ===============================================
-pause

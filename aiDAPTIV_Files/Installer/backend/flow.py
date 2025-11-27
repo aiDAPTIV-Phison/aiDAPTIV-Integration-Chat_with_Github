@@ -10,8 +10,6 @@ import httpx
 import asyncio
 import time
 
-from uuid import uuid4
-
 from form_data import (
     prepare_create_new_chat_payload,
     prepare_chat_payload_for_update_message,
@@ -148,7 +146,7 @@ class InitializeKVCacheService:
             response = await self.client.post(
                 '/chat/completions',
                 json=form_data,
-                timeout=300,
+                timeout=600,
             )
             response.raise_for_status()
             data = response.json()
@@ -213,8 +211,6 @@ async def generate_kv_cache():
     kvcache_service = InitializeKVCacheService(openwebui_base_url=f"http://{HOST}:{PORT}/api/")
     api_is_connected = await kvcache_service.healthcheck()
     if api_is_connected:
-        await kvcache_service.login('hk@email.com', 'hk')
-        
         if await kvcache_service.kv_cache_is_initialized():
             print(f"The KV Cache is already initialized, aborting...")
             return
