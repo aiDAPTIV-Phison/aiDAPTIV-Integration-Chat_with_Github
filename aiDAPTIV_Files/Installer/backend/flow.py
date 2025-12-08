@@ -211,6 +211,7 @@ async def generate_kv_cache():
     kvcache_service = InitializeKVCacheService(openwebui_base_url=f"http://{HOST}:{PORT}/api/")
     api_is_connected = await kvcache_service.healthcheck()
     if api_is_connected:
+        await kvcache_service.login(ADMIN_USER_EMAIL, ADMIN_USER_PASSWORD) 
         if await kvcache_service.kv_cache_is_initialized():
             print(f"The KV Cache is already initialized, aborting...")
             return
@@ -218,7 +219,6 @@ async def generate_kv_cache():
         start_time = time.perf_counter()
         user_question = "Please remember that you have access to github-mcp-server and should always use the tool to achieve my requirements.\n\nNow, use tool_search_repositories_post of github-mcp-server to search adn describe the linkedin/liger_kernel repostiory in github."
         
-        await kvcache_service.login(ADMIN_USER_EMAIL, ADMIN_USER_PASSWORD) 
         model_config = await kvcache_service.get_model(OPENAI_API_BASE_URL)
         
         user_message = await kvcache_service.create_new_chat(model_config['id'], user_question)

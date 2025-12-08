@@ -46,12 +46,12 @@ SET HOST=localhost
 IF "%UVICORN_WORKERS%"=="" SET UVICORN_WORKERS=1
 
 SET "CORS_ALLOW_ORIGIN=http://localhost:5173,http://localhost:8001"
-::"%PYTHON_EXE%" -m uvicorn open_webui.main:app --host "%HOST%" --port "%PORT%" --forwarded-allow-ips '*' --workers %UVICORN_WORKERS% --ws auto
 :: Start the server in background
-start "" "%PYTHON_EXE%" -m uvicorn open_webui.main:app --host "%HOST%" --port "%PORT%" --workers %UVICORN_WORKERS% --ws auto
+powershell -WindowStyle Hidden -Command ^
+  "Start-Process '%PYTHON_EXE%' -ArgumentList '-m uvicorn open_webui.main:app --host %HOST% --port %PORT% --workers %UVICORN_WORKERS% --ws auto' -WindowStyle Hidden"
 
 :: Wait a few seconds for server to be ready
-timeout /t 25
+timeout /t 30
 
 :: Full paths for safety
 SET "FLOW_SCRIPT=%PROJECT_ROOT%flow.py"
