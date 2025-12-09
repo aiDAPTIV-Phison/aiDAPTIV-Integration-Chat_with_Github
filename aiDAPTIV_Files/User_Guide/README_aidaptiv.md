@@ -24,11 +24,11 @@ You will learn how to set up the environment, build & reuse KV Cache, use GitHub
 
 
 #### Setup
-1. Navigate to the installer package directory.
-2. Double-click the `start_all.bat` script in the installer package.
-3. It should have 1 terminal window popping up requesting your Github PAT. 
-   - Enter your PAT when prompted 
-   - If you have previously provided a PAT, an `.env` file will be used automatically, and you will not be prompted again during future launches.
+1. Double-click the `aiDAPTIV_ChatWithGithub` desktop shortcut to launch the app.
+2. A terminal window should open, prompting you for your Github PAT. 
+   - Enter your PAT when prompted. 
+   - If you have previously provided a PAT, the `.env` file will be used automatically, and you will not be prompted again in future launches.
+   - Note: you can also set the Github PAT directly in the `.env` file.
 
 
 ## Chapter 2: How to Use?
