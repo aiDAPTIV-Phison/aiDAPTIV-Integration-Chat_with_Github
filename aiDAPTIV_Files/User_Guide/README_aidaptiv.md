@@ -36,7 +36,6 @@ You will learn how to set up the environment, build & reuse KV Cache, use GitHub
 1. **Initial Setup**
    - Wait for the application to finish initializing its components(OpenWebUI backend and Github MCP server). Once initialization completes, your browser will automatically open the `Chat With GitHub` interface.
    - If the setup is successful, a new chat titled `Asking Github Repository (Example)` will appear automatically.
-   - You may continue asking question in this chat or create a new one to ask about another Github repository with accelerated inference speed (via KV Cache reuse).
    - If you want to ask questions, you must **enable the Github tool use** before starting inference:
      - At the center of your page, you will see a chat box. Near the left bottom corner of the chat box, you can locate an icon beside "+", click on the button (Integrations)
      - Click on `Tools >`.
@@ -44,15 +43,20 @@ You will learn how to set up the environment, build & reuse KV Cache, use GitHub
    - To terminate or stop the application, double-click the `stop_all.bat` script in your installer directory. 
 
 2. **Basic Operation**
-- **Search repositories**
-  - Use example GitHub repositories (or your own) to query repository details through the MCP integrations.
-- **Repository Management**
-  - Depending on the permission granted in your PAT, you can explore additional GitHub MCP features such as: 
-    - Creating repositories
-    - Creating pull requests
-    - Pushing and pulling content
-    - Other GitHub automation features
-
+- **Key Actions to perform**
+  - **Search repositories**
+    - Use example GitHub repositories (or your own) to query repository details through the MCP integrations.
+  - **Repository Management**
+    - Depending on the permission granted in your PAT, you can explore additional GitHub MCP features such as: 
+      - Creating repositories
+      - Creating pull requests
+      - Pushing and pulling content
+      - Other GitHub automation features
+- **Using Golden Example to build KV cache**
+  - When the app first launches, the KV cache will be built automatically.
+  - You may continue asking question in this chat that reference the golden example(which asks about `linkedin/liger-kernel`), or create a new chat to ask about another Github repository with accelerated inference speed (via KV Cache reuse).
+  - You can perform inference using this prompt for faster result: `Help me search and describe the huggingface/inference-benchmarker github repository`.
+  
 ## Chapter 3: Troubleshooting
 ### Issue 1: No Github tool available 
 - **Symptoms**
