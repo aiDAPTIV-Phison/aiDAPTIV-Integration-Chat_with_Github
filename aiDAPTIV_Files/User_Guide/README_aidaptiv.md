@@ -64,4 +64,13 @@ You will learn how to set up the environment, build & reuse KV Cache, use GitHub
     - **Cause**: Github PAT was expired/ incorrect
 -  **Solution**
    -  Obtain a new Github PAT [following this guide](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) or follow the guide specified in the above [section](#how-to-get-github-personal-access-token-pat)
+### Issue 2: aiDAPTIV+ Server Connection Error
+- **Symptoms**"
+  - The terminal displays: `API healthcheck ping failed, retrying in {retry_interval} seconds` and `The Open-WebUI backend cannot be connected. Installation is failed. Terminating re-trying...\nConnected URL: http://{HOST}:{PORT}/api/`
+  - **Causes**: 
+    - The aiDAPTIV+ server is not running
+    - The Open-WebUI backend has not finished initializing
+- **Solution**
+  - Ensure the aiDAPTIV server is running and hosted on `http://localhost:13141/v1`
+  - Restart your application. After restarting, Open WebUI should be fully functional.
 

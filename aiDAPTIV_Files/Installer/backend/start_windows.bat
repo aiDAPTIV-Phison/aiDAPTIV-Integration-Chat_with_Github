@@ -46,13 +46,18 @@ SET HOST=localhost
 IF "%UVICORN_WORKERS%"=="" SET UVICORN_WORKERS=1
 
 SET "CORS_ALLOW_ORIGIN=http://localhost:5173,http://localhost:8001"
-:: Start the server in background
-powershell -WindowStyle Hidden -Command ^
-  "Start-Process '%PYTHON_EXE%' -ArgumentList '-m uvicorn open_webui.main:app --host %HOST% --port %PORT% --workers %UVICORN_WORKERS% --ws auto' -WindowStyle Hidden"
+:: ---------------------------------------------
+:: START UVICORN (HIDDEN)
+:: ---------------------------------------------
+echo Launching Uvicorn in background...
+powershell -Command "Start-Process '%PYTHON_EXE%' -ArgumentList '-m uvicorn open_webui.main:app --host %HOST% --port %PORT% --workers 1' -WindowStyle Hidden"
 
 :: Wait a few seconds for server to be ready
 timeout /t 30
 
+:: ---------------------------------------------
+:: RUN FLOW.PY (VISIBLE IN THIS TERMINAL)
+:: ---------------------------------------------
 :: Full paths for safety
 SET "FLOW_SCRIPT=%PROJECT_ROOT%flow.py"
 
@@ -62,25 +67,10 @@ echo Executing flow.py...
 
 SET "FLOW_EXIT=%ERRORLEVEL%"
 
-:: Check if flow.py failed
-IF NOT "%FLOW_EXIT%"=="0" (
+IF ERRORLEVEL 1 (
     echo.
-    echo ===============================================
-    echo  ERROR: flow.py failed with exit code %FLOW_EXIT%
-    echo  The server did NOT start successfully.
-    echo ===============================================
-    pause
-    exit /b %FLOW_EXIT%
+    echo ERROR: flow.py failed.
+) ELSE (
+    echo Opening browser...
+    start "" "http://localhost:%PORT%"
 )
-
-REM ---------------------------------------------
-REM 5) OPEN BROWSER AUTOMATICALLY
-REM ---------------------------------------------
-echo Opening browser...
-start "" "http://localhost:%BACKEND_PORT%"
-
-echo.
-echo ===============================================
-echo  All components are now running successfully!
-echo ===============================================
-pause

@@ -104,7 +104,8 @@ REM ---------------------------------------------
 REM 4) START BACKEND SERVER
 REM ---------------------------------------------
 echo Starting Backend Server...
-start "" /b /min "%BACKEND_PATH%" >nul 2>&1
-
+:: start "" /b /min "%BACKEND_PATH%" >nul 2>&1
+:: We call the backend script which will also hide the Uvicorn window
+call "%BACKEND_PATH%"
 echo Backend is running!
 echo.
